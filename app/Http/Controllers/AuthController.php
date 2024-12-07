@@ -24,7 +24,12 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return response()->json(['message' => 'berjhasil regis.']);
+        $response = [
+            'user' => $user,
+            'message' => 'akun berhasil dibuat'
+        ];
+
+        return response($response, 201);
     }
 
     // Login 
@@ -45,7 +50,17 @@ class AuthController extends Controller
 
         $token = $user->createToken('urang')->plainTextToken;
 
-        return response()->json(['token' => $token]);
+        $response = [
+            'user' => $user,
+            'token' => $token
+        ];
+
+        // return response()->json([
+        //     'user' => $user,
+        //     'token' => $token
+        // ]);
+
+        return response($response, 200);
     }
 
     // Logout
@@ -53,6 +68,10 @@ class AuthController extends Controller
     {
         $request->user()->currentAccessToken()->delete();
 
-        return response()->json(['message' => 'logout berhasil.']);
+        $response = [
+            'message' => 'berhasil logout, token dihapus',
+        ];
+
+        return response($response, 200);
     }
 }
