@@ -25,6 +25,9 @@ Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 Route::post('register', [AuthController::class, 'register']);
 
+// update currentuser
+Route::middleware('auth:sanctum')->put('user', [UserController::class, 'update']);
+
 // Rute pengguna yang dapat diakses oleh ADMIN atau pengguna yang sudah terautentikasi
 Route::middleware('auth:sanctum')->group(function () {
 
