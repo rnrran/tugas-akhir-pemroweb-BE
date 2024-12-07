@@ -17,5 +17,7 @@ class CategorySeeder extends Seeder
         Category::create(['name' => 'Films']);
         Category::create(['name' => 'Animation']);
         Category::create(['name' => 'Documentation']);
+        Category::create(['name' => 'Others']);
+        Category::create(['name' => 'Books']);
     }
 }

@@ -13,7 +13,8 @@ class Blog extends Model
         'title',
         'content',
         'user_id',
-        'category_id'
+        'category_id',
+        'description'
     ];
 
     /**
