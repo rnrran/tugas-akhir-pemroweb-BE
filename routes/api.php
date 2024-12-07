@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
@@ -19,6 +20,9 @@ Route::get('/', function () {
     return $data;
 });
 
+Route::post('login', [AuthController::class, 'login']);
+Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+Route::post('register', [AuthController::class, 'register']);
 
 Route::get('users', [UserController::class, 'index']);
 Route::get('users/{id}', [UserController::class, 'show']);
