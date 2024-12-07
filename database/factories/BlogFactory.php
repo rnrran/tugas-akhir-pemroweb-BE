@@ -24,7 +24,7 @@ class BlogFactory extends Factory
             //
             'title' => $this->faker->sentence(),
             'content' => $this->faker->paragraph(),
-            'user_id' => User::inRandomOrder()->first()->id,
+            'user_id' => User::where('role', 'admin')->inRandomOrder()->first()->id,
             'category_id' => Category::inRandomOrder()->first()->id,
         ];
     }
