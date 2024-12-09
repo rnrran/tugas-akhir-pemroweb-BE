@@ -15,7 +15,7 @@ class BlogController extends Controller
 
     public function show($id)
     {
-        return Blog::with('user', 'comments', 'category')->findOrFail($id);
+        return Blog::with('user', 'comments.user', 'category')->findOrFail($id);
     }
 
     public function store(Request $request)
@@ -23,13 +23,15 @@ class BlogController extends Controller
         $request->validate([
             'title' => 'required',
             'content' => 'required',
-            'user_id' => 'required|exists:users,id',   
-            'category_id' => 'required|exists:categories,id', 
+            'description' => 'required|string|max:500',  
+            'user_id' => 'required|exists:users,id',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
         return Blog::create([
             'title' => $request->title,
             'content' => $request->content,
+            'description' => $request->description, 
             'user_id' => $request->user_id,
             'category_id' => $request->category_id,
         ]);
@@ -47,6 +49,7 @@ class BlogController extends Controller
             'title' => 'required',
             'content' => 'required',
             'category_id' => 'required|exists:categories,id', 
+            'description' => 'required|string|max:500',  
         ]);
 
         // ambil berdasarkan id
@@ -55,6 +58,7 @@ class BlogController extends Controller
             'title' => $request->title,
             'content' => $request->content,
             'category_id' => $request->category_id, 
+            'description' => $request->description, 
         ]);
 
         return response()->json($blog); 

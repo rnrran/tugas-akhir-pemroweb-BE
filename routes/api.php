@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -40,7 +41,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // GET /blogs/{id} → BlogController@show
     // PUT /blogs/{id} → BlogController@update
     // DELETE /blogs/{id} → BlogController@destroy
-    Route::apiResource('blogs', BlogController::class);
+    Route::apiResource('blogs', BlogController::class)->except('show');
 
     Route::post('comments', [CommentController::class, 'store']); 
 });
@@ -52,3 +53,5 @@ Route::get('blogs/{id}', [BlogController::class, 'show']);
 Route::middleware('auth:sanctum')->get('/current-user', function (Request $request) {
     return response()->json($request->user());
 });
+
+Route::get('categories', [CategoryController::class, 'index']);
