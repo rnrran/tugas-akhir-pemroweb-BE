@@ -79,6 +79,3 @@ php artisan key:generate
 ```
 php artisan serve
 ```
-
-Pastikan untuk mengganti `https://github.com/rnrran/tugas-akhir-pemroweb-BE/` dengan URL repositori Anda dan menyesuaikan bagian lainnya sesuai kebutuhan.
-
