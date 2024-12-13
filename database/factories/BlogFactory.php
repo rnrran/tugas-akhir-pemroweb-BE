@@ -23,7 +23,7 @@ class BlogFactory extends Factory
         return [
             //
             'title' => $this->faker->sentence(),
-            'content' => implode("\n\n", $this->faker->paragraphs(5)),
+            'content' => implode("\n\n", $this->faker->paragraphs(100)),
             'user_id' => User::where('role', 'admin')->inRandomOrder()->first()->id,
             'description' => $this->faker->text(150),
             'category_id' => Category::inRandomOrder()->first()->id,
